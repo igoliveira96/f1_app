@@ -1,3 +1,5 @@
+import org.gradle.api.artifacts.dsl.DependencyHandler
+
 object Versions {
 
     val coreKtx = "1.8.0"
@@ -20,9 +22,8 @@ object Versions {
 
 object Deps {
 
-    val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
-
     object Android {
+        val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         val composeBom = "androidx.compose:compose-bom:${Versions.Android.composeBOM}"
         val composeUI = "androidx.compose.ui:ui"
         val composeUIGraphics = "androidx.compose.ui:ui-graphics"
@@ -43,5 +44,37 @@ object Deps {
         val composeUITooling = "androidx.compose.ui:ui-tooling"
         val composeUITestManifest = "androidx.compose.ui:ui-test-manifest"
     }
+
+}
+
+fun DependencyHandler.androidX() {
+    implementation(Deps.Android.coreKtx)
+    implementation(Deps.Android.lifecycle)
+}
+
+fun DependencyHandler.compose() {
+    implementation(platform(Deps.Android.composeBom))
+    implementation(Deps.Android.composeUI)
+    implementation(Deps.Android.composeUIGraphics)
+    implementation(Deps.Android.composeToolingPreview)
+    implementation(Deps.Android.composeMaterial3)
+    implementation(Deps.Android.activityCompose)
+}
+
+fun DependencyHandler.androidTest() {
+    testImplementation(Deps.Test.junit)
+    androidTestImplementation(Deps.Test.androidJunit)
+    androidTestImplementation(Deps.Test.espressoCore)
+    androidTestImplementation(platform(Deps.Android.composeBom))
+    androidTestImplementation(Deps.Test.composeJunit4)
+    debugImplementation(Deps.Debug.composeUITooling)
+    debugImplementation(Deps.Debug.composeUITestManifest)
+}
+
+fun DependencyHandler.test() {
+    testImplementation(Deps.Test.junit)
+}
+
+fun DependencyHandler.coreUI() {
 
 }

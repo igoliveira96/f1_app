@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "f1"
 include(":app")
+include(":core:ui")

@@ -63,22 +63,7 @@ android {
 }
 
 dependencies {
-    val android = Deps.Android
-    val test = Deps.Test
-
-    implementation(Deps.coreKtx)
-    implementation(android.lifecycle)
-    implementation(android.activityCompose)
-    implementation(platform(android.composeBom))
-    implementation(android.composeUI)
-    implementation(android.composeUIGraphics)
-    implementation(android.composeToolingPreview)
-    implementation(android.composeMaterial3)
-    testImplementation(test.junit)
-    androidTestImplementation(test.androidJunit)
-    androidTestImplementation(test.espressoCore)
-    androidTestImplementation(platform(android.composeBom))
-    androidTestImplementation(test.composeJunit4)
-    debugImplementation(Deps.Debug.composeUITooling)
-    debugImplementation(Deps.Debug.composeUITestManifest)
+    androidX()
+    compose()
+    androidTest()
 }
