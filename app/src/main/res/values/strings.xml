@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">f1</string>
+    <string name="driver_points">%d PTS</string>
 </resources>

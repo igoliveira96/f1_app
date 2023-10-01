@@ -1,11 +1,11 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.project
 
 object Versions {
 
     val coreKtx = "1.8.0"
 
     object Android {
-
         val composeBOM = "2022.10.00"
         val activityCompose = "1.5.1"
         val lifecycle = "2.3.1"
@@ -15,7 +15,10 @@ object Versions {
         val junit = "4.13.2"
         val androidJunit = "1.1.3"
         val espressoCore = "3.5.1"
+    }
 
+    object External {
+        val coil = "2.4.0"
     }
 
 }
@@ -45,6 +48,16 @@ object Deps {
         val composeUITestManifest = "androidx.compose.ui:ui-test-manifest"
     }
 
+    object External {
+        val coil = "io.coil-kt:coil-compose:${Versions.External.coil}"
+    }
+
+    object Modules {
+        object Core {
+            val ui = ":core:ui"
+        }
+    }
+
 }
 
 fun DependencyHandler.androidX() {
@@ -59,10 +72,10 @@ fun DependencyHandler.compose() {
     implementation(Deps.Android.composeToolingPreview)
     implementation(Deps.Android.composeMaterial3)
     implementation(Deps.Android.activityCompose)
+    implementation(Deps.External.coil)
 }
 
 fun DependencyHandler.androidTest() {
-    testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espressoCore)
     androidTestImplementation(platform(Deps.Android.composeBom))
@@ -76,5 +89,11 @@ fun DependencyHandler.test() {
 }
 
 fun DependencyHandler.coreUI() {
+    compose()
+    androidTest()
+    test()
+}
 
+fun DependencyHandler.features() {
+//    implementation(project(Deps.Modules.Core.ui))
 }

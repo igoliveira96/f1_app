@@ -66,4 +66,5 @@ dependencies {
     androidX()
     compose()
     androidTest()
+    features()
 }
