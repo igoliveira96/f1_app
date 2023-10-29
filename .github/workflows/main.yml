@@ -11,13 +11,13 @@ jobs:
     name: Run Unit Tests
     runs-on: ubuntu-latest
     steps:
-    uses: actions/checkout@v4
+    - uses: actions/checkout@v4
     name: set up JDK 1.8
-    uses: actions/setup-java@v3
+    - uses: actions/setup-java@v3
       with:
         java-version: 1.8
         name: Unit tests
-    run: bash ./gradlew test — stacktrace
+    - run: bash ./gradlew test — stacktrace
   build-and-generate-apk:
     runs-on: ubuntu-latest
     steps:
