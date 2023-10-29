@@ -1,11 +1,12 @@
 name: Pull Requests CI
 
 on:
-  pull_request:
-  branches:
-  - 'master'
-  - 'release*'
+  push:
+    branches:
+      - master
+      - 'release*'
 
 jobs:
   unit_tests:
     name: Run Unit Tests
+    runs-on: ubuntu-latest
