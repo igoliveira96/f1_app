@@ -16,4 +16,4 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: 17
-      - run: bash ./gradlew test — stacktrace
+      - run: bash ./gradlew test --stacktrace
