@@ -18,6 +18,7 @@ jobs:
           java-version: 17
       - run: bash ./gradlew test --stacktrace
   build_and_generate_app:
+    name: Building Debug APK
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
