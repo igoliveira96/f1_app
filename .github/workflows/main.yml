@@ -29,8 +29,3 @@ jobs:
       - run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager — install "ndk;26.1.10909125"
       - name: Build Debug
       - run: ./gradlew assembleDebug
-      - name: Upload APK on Build Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: f1_app
-          path: app/build/outputs/apk/debug/app-debug.apk
