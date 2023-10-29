@@ -26,6 +26,6 @@ jobs:
           distribution: 'corretto'
           java-version: 17
       - name: Install NDK
-      - run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager — install "ndk;26.1.10909125"
+        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager — install "ndk;26.1.10909125"
       - name: Build Debug
-      - run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug
