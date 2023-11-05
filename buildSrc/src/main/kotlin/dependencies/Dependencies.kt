@@ -9,6 +9,7 @@ object Versions {
         val composeBOM = "2022.10.00"
         val activityCompose = "1.5.1"
         val lifecycle = "2.3.1"
+        val hilt = "2.44"
     }
 
     object Test {
@@ -35,6 +36,9 @@ object Deps {
         val composeMaterial3 = "androidx.compose.material3:material3"
         val activityCompose = "androidx.activity:activity-compose:${Versions.Android.activityCompose}"
         val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Android.lifecycle}"
+        val hiltAndroid = "com.google.dagger:hilt-android:${Versions.Android.hilt}"
+        val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Android.hilt}"
+        val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Android.hilt}"
     }
 
     object Test {
@@ -75,6 +79,11 @@ fun DependencyHandler.compose() {
     implementation(Deps.Android.composeMaterial3)
     implementation(Deps.Android.activityCompose)
     implementation(Deps.External.coil)
+}
+
+fun DependencyHandler.hilt() {
+    implementation(Deps.Android.hiltAndroid)
+    kapt(Deps.Android.hiltCompiler)
 }
 
 fun DependencyHandler.androidTest() {

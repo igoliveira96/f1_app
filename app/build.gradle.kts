@@ -5,6 +5,7 @@ import settings.Settings
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
 android {
@@ -65,6 +66,7 @@ android {
 dependencies {
     androidX()
     compose()
+    hilt()
     androidTest()
     test()
     features()
