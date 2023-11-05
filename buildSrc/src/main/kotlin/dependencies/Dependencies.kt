@@ -1,13 +1,13 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.kotlin.dsl.project
 
 object Versions {
 
     val coreKtx = "1.8.0"
 
     object Android {
-        val composeBOM = "2022.10.00"
+        val compose = "1.4.2"
         val activityCompose = "1.5.1"
+        val material3 = "1.1.2"
         val lifecycle = "2.3.1"
         val hilt = "2.44"
     }
@@ -29,11 +29,10 @@ object Deps {
 
     object Android {
         val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
-        val composeBom = "androidx.compose:compose-bom:${Versions.Android.composeBOM}"
-        val composeUI = "androidx.compose.ui:ui"
-        val composeUIGraphics = "androidx.compose.ui:ui-graphics"
-        val composeToolingPreview = "androidx.compose.ui:ui-tooling-preview"
-        val composeMaterial3 = "androidx.compose.material3:material3"
+        val composeUI = "androidx.compose.ui:ui:${Versions.Android.compose}"
+        val composeUIGraphics = "androidx.compose.ui:ui-graphics:${Versions.Android.compose}"
+        val composeToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.Android.compose}"
+        val composeMaterial3 = "androidx.compose.material3:material3:${Versions.Android.material3}"
         val activityCompose = "androidx.activity:activity-compose:${Versions.Android.activityCompose}"
         val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Android.lifecycle}"
         val hiltAndroid = "com.google.dagger:hilt-android:${Versions.Android.hilt}"
@@ -45,13 +44,13 @@ object Deps {
         val junit = "junit:junit:${Versions.Test.junit}"
         val androidJunit = "androidx.test.ext:junit:${Versions.Test.androidJunit}"
         val espressoCore = "androidx.test.espresso:espresso-core:${Versions.Test.espressoCore}"
-        val composeJunit4 = "androidx.compose.ui:ui-test-junit4"
+        val composeJunit4 = "androidx.compose.ui:ui-test-junit4:${Versions.Android.compose}"
         val googleTruth = "com.google.truth:truth:${Versions.Test.googleTruth}"
     }
 
     object Debug {
-        val composeUITooling = "androidx.compose.ui:ui-tooling"
-        val composeUITestManifest = "androidx.compose.ui:ui-test-manifest"
+        val composeUITooling = "androidx.compose.ui:ui-tooling:${Versions.Android.compose}"
+        val composeUITestManifest = "androidx.compose.ui:ui-test-manifest:${Versions.Android.compose}"
     }
 
     object External {
@@ -72,7 +71,6 @@ fun DependencyHandler.androidX() {
 }
 
 fun DependencyHandler.compose() {
-    implementation(platform(Deps.Android.composeBom))
     implementation(Deps.Android.composeUI)
     implementation(Deps.Android.composeUIGraphics)
     implementation(Deps.Android.composeToolingPreview)
@@ -89,7 +87,6 @@ fun DependencyHandler.hilt() {
 fun DependencyHandler.androidTest() {
     androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espressoCore)
-    androidTestImplementation(platform(Deps.Android.composeBom))
     androidTestImplementation(Deps.Test.composeJunit4)
     debugImplementation(Deps.Debug.composeUITooling)
     debugImplementation(Deps.Debug.composeUITestManifest)
