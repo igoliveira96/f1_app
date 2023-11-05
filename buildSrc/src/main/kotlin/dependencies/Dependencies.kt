@@ -15,6 +15,7 @@ object Versions {
         val junit = "4.13.2"
         val androidJunit = "1.1.3"
         val espressoCore = "3.5.1"
+        val googleTruth = "1.1.5"
     }
 
     object External {
@@ -41,6 +42,7 @@ object Deps {
         val androidJunit = "androidx.test.ext:junit:${Versions.Test.androidJunit}"
         val espressoCore = "androidx.test.espresso:espresso-core:${Versions.Test.espressoCore}"
         val composeJunit4 = "androidx.compose.ui:ui-test-junit4"
+        val googleTruth = "com.google.truth:truth:${Versions.Test.googleTruth}"
     }
 
     object Debug {
@@ -85,7 +87,8 @@ fun DependencyHandler.androidTest() {
 }
 
 fun DependencyHandler.test() {
-    testImplementation(Deps.Test.junit)
+    implementation(Deps.Test.junit)
+    implementation(Deps.Test.googleTruth)
 }
 
 fun DependencyHandler.coreUI() {
