@@ -87,8 +87,8 @@ fun DependencyHandler.androidTest() {
 }
 
 fun DependencyHandler.test() {
-    testImplementation(Deps.Test.junit)
-    testImplementation(Deps.Test.googleTruth)
+    implementation(Deps.Test.junit)
+    implementation(Deps.Test.googleTruth)
 }
 
 fun DependencyHandler.coreUI() {
