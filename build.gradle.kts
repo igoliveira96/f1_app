@@ -8,6 +8,7 @@ buildscript {
 
     dependencies {
         classpath(Deps.Android.hiltAgp)
+        classpath(Deps.AGP.googleSecrets)
     }
 }
 

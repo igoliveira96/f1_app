@@ -12,6 +12,10 @@ object Versions {
         val hilt = "2.44"
     }
 
+    object Google {
+        val secrets = "2.0.1"
+    }
+
     object Test {
         val junit = "4.13.2"
         val androidJunit = "1.1.3"
@@ -38,6 +42,10 @@ object Deps {
         val hiltAndroid = "com.google.dagger:hilt-android:${Versions.Android.hilt}"
         val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Android.hilt}"
         val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Android.hilt}"
+    }
+
+    object AGP {
+        val googleSecrets = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:${Versions.Google.secrets}"
     }
 
     object Test {
