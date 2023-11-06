@@ -25,6 +25,10 @@ object Versions {
 
     object External {
         val coil = "2.4.0"
+        val retrofit = "2.9.0"
+        val okhttp3 = "4.11.0"
+        val chucker = "4.0.0"
+        val mockwebserver = "4.11.0"
     }
 
 }
@@ -63,6 +67,11 @@ object Deps {
 
     object External {
         val coil = "io.coil-kt:coil-compose:${Versions.External.coil}"
+        val retrofit = "com.squareup.retrofit2:retrofit:${Versions.External.retrofit}"
+        val okhttp3 = "com.squareup.okhttp3:okhttp:${Versions.External.okhttp3}"
+        val chucker = "com.github.chuckerteam.chucker:library:${Versions.External.chucker}"
+        val chuckerNoOp = "com.github.chuckerteam.chucker:library-no-op:${Versions.External.chucker}"
+        val mockwebserver = "com.squareup.okhttp3:mockwebserver:${Versions.External.mockwebserver}"
     }
 
     object Modules {
@@ -90,6 +99,14 @@ fun DependencyHandler.compose() {
 fun DependencyHandler.hilt() {
     implementation(Deps.Android.hiltAndroid)
     kapt(Deps.Android.hiltCompiler)
+}
+
+fun DependencyHandler.retrofit() {
+    implementation(Deps.External.retrofit)
+    implementation(Deps.External.okhttp3)
+    debugImplementation(Deps.External.chucker)
+    releaseImplementation(Deps.External.chuckerNoOp)
+    testImplementation(Deps.External.mockwebserver)
 }
 
 fun DependencyHandler.androidTest() {

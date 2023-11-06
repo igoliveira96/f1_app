@@ -1,6 +1,7 @@
 import groovy.lang.Closure
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.DependencyHandlerScope
 
 fun DependencyHandler.implementation(dependency: String) {
     add("implementation", dependency)
@@ -20,6 +21,10 @@ fun DependencyHandler.androidTestImplementation(dependency: Dependency) {
 
 fun DependencyHandler.debugImplementation(dependency: String) {
     add("debugImplementation", dependency)
+}
+
+fun DependencyHandler.releaseImplementation(lib: String) {
+    add("releaseImplementation", lib)
 }
 
 fun DependencyHandler.testImplementation(dependency: String) {
