@@ -9,11 +9,12 @@ object Versions {
         val activityCompose = "1.5.1"
         val material3 = "1.1.2"
         val lifecycle = "2.3.1"
-        val hilt = "2.44"
+        val hilt = "2.48.1"
     }
 
     object Google {
         val secrets = "2.0.1"
+        val gson = "2.10.1"
     }
 
     object Test {
@@ -29,6 +30,7 @@ object Versions {
         val okhttp3 = "4.11.0"
         val chucker = "4.0.0"
         val mockwebserver = "4.11.0"
+        val javapoet = "1.13.0"
     }
 
 }
@@ -69,14 +71,23 @@ object Deps {
         val coil = "io.coil-kt:coil-compose:${Versions.External.coil}"
         val retrofit = "com.squareup.retrofit2:retrofit:${Versions.External.retrofit}"
         val okhttp3 = "com.squareup.okhttp3:okhttp:${Versions.External.okhttp3}"
+        val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.External.okhttp3}"
         val chucker = "com.github.chuckerteam.chucker:library:${Versions.External.chucker}"
         val chuckerNoOp = "com.github.chuckerteam.chucker:library-no-op:${Versions.External.chucker}"
         val mockwebserver = "com.squareup.okhttp3:mockwebserver:${Versions.External.mockwebserver}"
+        val gson = "com.google.code.gson:gson:${Versions.Google.gson}"
+        val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.External.retrofit}"
+        val javapoet = "com.squareup:javapoet:${Versions.External.javapoet}"
     }
 
     object Modules {
         object Core {
             val ui = ":core:ui"
+            val data = ":core:data"
+        }
+
+        object Data {
+            val circuits = ":data:circuits"
         }
     }
 
@@ -104,6 +115,9 @@ fun DependencyHandler.hilt() {
 fun DependencyHandler.retrofit() {
     implementation(Deps.External.retrofit)
     implementation(Deps.External.okhttp3)
+    implementation(Deps.External.loggingInterceptor)
+    implementation(Deps.External.gson)
+    implementation(Deps.External.gsonConverter)
     debugImplementation(Deps.External.chucker)
     releaseImplementation(Deps.External.chuckerNoOp)
     testImplementation(Deps.External.mockwebserver)
@@ -129,5 +143,23 @@ fun DependencyHandler.coreUI() {
 }
 
 fun DependencyHandler.features() {
-//    implementation(project(Deps.Modules.Core.ui))
+    implementationProject(Deps.Modules.Data.circuits)
+}
+
+fun DependencyHandler.coreData() {
+    hilt()
+    retrofit()
+    androidTest()
+    test()
+}
+
+fun DependencyHandler.dataCircuits() {
+    hilt()
+    compose()
+    retrofit()
+    androidTest()
+    test()
+
+    implementationProject(Deps.Modules.Core.ui)
+    implementationProject(Deps.Modules.Core.data)
 }

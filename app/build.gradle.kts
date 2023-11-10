@@ -6,7 +6,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-    kotlin("kapt")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -24,8 +25,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-
-        buildConfigField("String", "API_BASE_URL", "\"https://v1.formula-1.api-sports.io/\"")
     }
 
     buildTypes {
@@ -70,8 +69,13 @@ android {
 dependencies {
     androidX()
     compose()
-    hilt()
+    implementation(Deps.Android.hiltAndroid)
+    kapt(Deps.Android.hiltCompiler)
     androidTest()
     test()
     features()
+}
+
+kapt {
+    correctErrorTypes = true
 }

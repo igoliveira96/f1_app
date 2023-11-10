@@ -6,7 +6,7 @@ object Settings {
 
     val compileSdk = 33
     val applicationId = "com.example.f1"
-    val minSdk = 24
+    val minSdk = 21
     val targetSdk = 33
     val versionCode = 1
     val versionName = "1.0"

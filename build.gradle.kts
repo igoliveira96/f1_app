@@ -1,4 +1,6 @@
-plugins { }
+plugins {
+    id("com.google.dagger.hilt.android") version "2.48.1" apply false
+}
 
 buildscript {
     repositories {
@@ -8,8 +10,17 @@ buildscript {
     }
 
     dependencies {
-        classpath(Deps.Android.hiltAgp)
         classpath(Deps.AGP.googleSecrets)
+    }
+}
+
+subprojects {
+    afterEvaluate {
+        (extensions.findByName("android") as? com.android.build.gradle.BaseExtension)?.apply {
+            defaultConfig {
+                buildConfigField("String", "API_BASE_URL", "\"https://v1.formula-1.api-sports.io/\"")
+            }
+        }
     }
 }
 

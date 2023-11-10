@@ -19,3 +19,4 @@ rootProject.name = "f1"
 include(":app")
 include(":core:ui")
 include(":core:data")
+include(":data:circuits")

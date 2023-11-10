@@ -30,9 +30,18 @@ class MainGradlePlugin: Plugin<Project> {
                 testInstrumentationRunner = Settings.testInstrumentationRunner
             }
 
+            buildFeatures {
+                compose = true
+                buildConfig = true
+            }
+
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_18
                 targetCompatibility = JavaVersion.VERSION_18
+            }
+
+            composeOptions {
+                kotlinCompilerExtensionVersion = Settings.CompileOptions.kotlinCompilerExtensionVersion
             }
         }
     }

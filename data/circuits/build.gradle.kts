@@ -6,9 +6,9 @@ plugins {
 apply<MainGradlePlugin>()
 
 android {
-    namespace = "com.example.f1.core.data"
+    namespace = "com.example.f1.data.circuits"
 }
 
 dependencies {
-    coreData()
+    dataCircuits()
 }
