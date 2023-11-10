@@ -1,6 +1,6 @@
 package com.example.f1.core.data.response
 
-sealed class BaseResponse<T>(
-    val result: Int,
+data class BaseResponse<T>(
+    val results: Int,
     val response: List<T>
 )

@@ -31,6 +31,7 @@ object Versions {
         val chucker = "4.0.0"
         val mockwebserver = "4.11.0"
         val javapoet = "1.13.0"
+        val coroutines = "1.3.9"
     }
 
 }
@@ -60,6 +61,7 @@ object Deps {
         val espressoCore = "androidx.test.espresso:espresso-core:${Versions.Test.espressoCore}"
         val composeJunit4 = "androidx.compose.ui:ui-test-junit4:${Versions.Android.compose}"
         val googleTruth = "com.google.truth:truth:${Versions.Test.googleTruth}"
+        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.External.coroutines}"
     }
 
     object Debug {
@@ -78,6 +80,7 @@ object Deps {
         val gson = "com.google.code.gson:gson:${Versions.Google.gson}"
         val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.External.retrofit}"
         val javapoet = "com.squareup:javapoet:${Versions.External.javapoet}"
+        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.External.coroutines}"
     }
 
     object Modules {
@@ -134,6 +137,7 @@ fun DependencyHandler.androidTest() {
 fun DependencyHandler.test() {
     implementation(Deps.Test.junit)
     implementation(Deps.Test.googleTruth)
+    testImplementation(Deps.Test.coroutines)
 }
 
 fun DependencyHandler.coreUI() {
@@ -151,6 +155,7 @@ fun DependencyHandler.coreData() {
     retrofit()
     androidTest()
     test()
+    implementation(Deps.External.coroutines)
 }
 
 fun DependencyHandler.dataCircuits() {
@@ -159,6 +164,8 @@ fun DependencyHandler.dataCircuits() {
     retrofit()
     androidTest()
     test()
+
+    implementation(Deps.External.coroutines)
 
     implementationProject(Deps.Modules.Core.ui)
     implementationProject(Deps.Modules.Core.data)

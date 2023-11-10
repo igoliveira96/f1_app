@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface CircuitsService {
 
     @GET("circuits")
-    fun getCircuits(): BaseResponse<CircuitResponse>
+    suspend fun getCircuits(): BaseResponse<CircuitResponse>
 
 }
