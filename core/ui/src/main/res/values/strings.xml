@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="driver_points">%d PTS</string>
+    <string name="driver_points">PTS</string>
 </resources>
