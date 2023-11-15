@@ -17,6 +17,7 @@ class MainGradlePlugin: Plugin<Project> {
             plugin("kotlin-android")
             plugin("kotlin-kapt")
             plugin("dagger.hilt.android.plugin")
+            plugin("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
         }
     }
 
@@ -29,9 +30,18 @@ class MainGradlePlugin: Plugin<Project> {
                 testInstrumentationRunner = Settings.testInstrumentationRunner
             }
 
+            buildFeatures {
+                compose = true
+                buildConfig = true
+            }
+
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_18
                 targetCompatibility = JavaVersion.VERSION_18
+            }
+
+            composeOptions {
+                kotlinCompilerExtensionVersion = Settings.CompileOptions.kotlinCompilerExtensionVersion
             }
         }
     }

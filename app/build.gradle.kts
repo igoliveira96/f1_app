@@ -5,7 +5,9 @@ import settings.Settings
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -52,6 +54,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Settings.CompileOptions.kotlinCompilerExtensionVersion
@@ -66,8 +69,13 @@ android {
 dependencies {
     androidX()
     compose()
-    hilt()
+    implementation(Deps.Android.hiltAndroid)
+    kapt(Deps.Android.hiltCompiler)
     androidTest()
     test()
     features()
+}
+
+kapt {
+    correctErrorTypes = true
 }

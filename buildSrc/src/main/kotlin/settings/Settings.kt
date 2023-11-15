@@ -6,7 +6,7 @@ object Settings {
 
     val compileSdk = 33
     val applicationId = "com.example.f1"
-    val minSdk = 24
+    val minSdk = 21
     val targetSdk = 33
     val versionCode = 1
     val versionName = "1.0"
@@ -23,9 +23,9 @@ object Settings {
     }
 
     object CompileOptions {
-        const val kotlinJvmTarget = "1.8"
-        const val kotlinCompilerExtensionVersion = "1.3.2"
-        val javaVersion = JavaVersion.VERSION_1_8
+        const val kotlinJvmTarget = "18"
+        const val kotlinCompilerExtensionVersion = "1.4.2"
+        val javaVersion = JavaVersion.VERSION_18
     }
 
 }
