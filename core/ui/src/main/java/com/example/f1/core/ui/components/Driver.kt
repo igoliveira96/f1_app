@@ -1,4 +1,4 @@
-package com.example.f1
+package com.example.f1.core.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -30,12 +30,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.f1.data.DriverUI
-import com.example.f1.theme.F1Theme
-import com.example.f1.theme.Grey
+import com.example.f1.core.ui.R
+import com.example.f1.core.ui.data.DriverUI
+import com.example.f1.core.ui.theme.F1Theme
+import com.example.f1.core.ui.theme.Grey
+import com.example.f1.core.ui.theme.values.LocalSpacing
 
 @Composable
 fun Driver(driverUI: DriverUI) {
+    val spacing = LocalSpacing.current
+
     Card(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -48,7 +52,7 @@ fun Driver(driverUI: DriverUI) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(spacing.medium)
             ) {
                 Text(
                     driverUI.number.toString(),
@@ -56,7 +60,7 @@ fun Driver(driverUI: DriverUI) {
                     fontWeight = FontWeight.Bold,
                     color = Color.White
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(spacing.extraSmall))
                 Text(
                     driverUI.firstName,
                     style = MaterialTheme.typography.bodyLarge,
@@ -69,7 +73,7 @@ fun Driver(driverUI: DriverUI) {
                     fontWeight = FontWeight.Bold,
                     color = Color.White
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(spacing.extraSmall))
                 Text(
                     driverUI.team,
                     style = MaterialTheme.typography.labelSmall,
@@ -86,8 +90,8 @@ fun Driver(driverUI: DriverUI) {
                 ) {
                     AsyncImage(
                         modifier = Modifier
-                            .size(140.dp)
-                            .padding(end = 16.dp)
+                            .size(spacing.driverImage)
+                            .padding(end = spacing.medium)
                             .align(Alignment.BottomEnd),
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(driverUI.imageURL)
@@ -103,7 +107,7 @@ fun Driver(driverUI: DriverUI) {
                     Text(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
-                            .padding(bottom = 14.dp),
+                            .padding(bottom = spacing.medium),
                         text = stringResource(R.string.driver_points, driverUI.points),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,

@@ -1,4 +1,4 @@
-package com.example.f1.data
+package com.example.f1.core.ui.data
 
 data class DriverUI(
     val name: String,

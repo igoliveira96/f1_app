@@ -141,12 +141,14 @@ fun DependencyHandler.test() {
 }
 
 fun DependencyHandler.coreUI() {
+    hilt()
     compose()
     androidTest()
     test()
 }
 
 fun DependencyHandler.features() {
+    implementationProject(Deps.Modules.Core.ui)
     implementationProject(Deps.Modules.Data.circuits)
 }
 
