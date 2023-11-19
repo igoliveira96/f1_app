@@ -9,6 +9,7 @@ object Versions {
         val activityCompose = "1.5.1"
         val constraintLayout = "1.0.1"
         val material3 = "1.1.2"
+        val materialIcons = "1.5.4"
         val lifecycle = "2.3.1"
         val hilt = "2.48.1"
     }
@@ -46,7 +47,8 @@ object Deps {
         val composeToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.Android.compose}"
         val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:${Versions.Android.constraintLayout}"
         val composeMaterial3 = "androidx.compose.material3:material3:${Versions.Android.material3}"
-        val activityCompose = "androidx.activity:activity-compose:${Versions.Android.activityCompose}"
+        val composeMaterialIcons = "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
+        val activityCompose = "androidx.activity:activity-compose:${Versions.Android.materialIcons}"
         val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Android.lifecycle}"
         val hiltAndroid = "com.google.dagger:hilt-android:${Versions.Android.hilt}"
         val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Android.hilt}"
@@ -108,6 +110,7 @@ fun DependencyHandler.compose() {
     implementation(Deps.Android.composeUIGraphics)
     implementation(Deps.Android.composeToolingPreview)
     implementation(Deps.Android.composeMaterial3)
+    implementation(Deps.Android.composeMaterialIcons)
     implementation(Deps.Android.activityCompose)
     implementation(Deps.Android.constraintLayout)
     implementation(Deps.External.coil)

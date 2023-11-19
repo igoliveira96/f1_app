@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="example_text">Example text</string>
     <string name="driver_points">PTS</string>
+    <string name="number_of_laps">Laps: %d</string>
+    <string name="circuit_name_and_location">%s\n%s - %s</string>
+    <string name="circuit_record">Record: %s\n%s - %s</string>
+    <string name="circuit_length">Length: %s</string>
+    <string name="race_distance">Race distance: %s</string>
 </resources>
