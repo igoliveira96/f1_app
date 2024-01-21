@@ -37,7 +37,7 @@ object Versions {
         const val mockwebserver = "4.11.0"
         const val javapoet = "1.13.0"
         const val coroutines = "1.3.9"
-        const val rxJava = "3.1.8"
+        const val rxKotlin = "3.0.1"
         const val rxAndroid = "3.0.2"
     }
 
@@ -94,7 +94,7 @@ object Deps {
         const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.External.retrofit}"
         const val javapoet = "com.squareup:javapoet:${Versions.External.javapoet}"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.External.coroutines}"
-        const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.External.rxJava}"
+        const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.External.rxKotlin}"
         const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.External.rxAndroid}"
     }
 
@@ -222,7 +222,7 @@ fun DependencyHandler.dataCircuits() {
     test()
 
     implementation(Deps.External.coroutines)
-    implementation(Deps.External.rxJava)
+    implementation(Deps.External.rxKotlin)
     implementation(Deps.External.rxAndroid)
 
     implementationProject(Deps.Modules.Core.data)
