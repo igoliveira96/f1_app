@@ -7,8 +7,7 @@ import com.example.f1.core.ui.components.PageTitle
 import com.example.f1.core.ui.data.CircuitUI
 
 @Composable
-fun CircuitsScreen() {
-
+fun CircuitsScreen(viewModel: CircuitsViewModel) {
     Column {
         PageTitle(title = R.string.circuits)
 //        Spacer(modifier = Modifier.padding(top = 24.dp))

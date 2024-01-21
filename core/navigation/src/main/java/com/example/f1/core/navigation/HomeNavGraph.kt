@@ -2,6 +2,7 @@ package com.example.f1.core.navigation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
@@ -30,7 +31,7 @@ private fun NavGraphBuilder.addRacing() {
 
 private fun NavGraphBuilder.addCircuits() {
     composable(HomeDestination.Circuits.createRoute()) {
-        CircuitsScreen()
+        CircuitsScreen(viewModel = viewModel())
     }
 }
 
