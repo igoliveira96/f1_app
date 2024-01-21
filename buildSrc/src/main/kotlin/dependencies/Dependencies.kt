@@ -6,6 +6,7 @@ object Versions {
 
     object Android {
         val compose = "1.4.2"
+        val composeRuntime = "1.3.3"
         val activityCompose = "1.5.1"
         val constraintLayout = "1.0.1"
         val material3 = "1.1.2"
@@ -49,6 +50,7 @@ object Deps {
         val composeMaterial3 = "androidx.compose.material3:material3:${Versions.Android.material3}"
         val composeMaterialIcons = "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
         val activityCompose = "androidx.activity:activity-compose:${Versions.Android.materialIcons}"
+        val composeRuntime = "androidx.compose.runtime:runtime:${Versions.Android.composeRuntime}"
         val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Android.lifecycle}"
         val hiltAndroid = "com.google.dagger:hilt-android:${Versions.Android.hilt}"
         val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Android.hilt}"
@@ -91,6 +93,7 @@ object Deps {
         object Core {
             val ui = ":core:ui"
             val data = ":core:data"
+            val database = ":core:database"
         }
 
         object Data {
@@ -113,6 +116,7 @@ fun DependencyHandler.compose() {
     implementation(Deps.Android.composeMaterialIcons)
     implementation(Deps.Android.activityCompose)
     implementation(Deps.Android.constraintLayout)
+    implementation(Deps.Android.composeRuntime)
     implementation(Deps.External.coil)
 }
 
@@ -166,6 +170,14 @@ fun DependencyHandler.coreData() {
     implementation(Deps.External.coroutines)
 }
 
+fun DependencyHandler.coreDatabase() {
+    hilt()
+    retrofit()
+    androidTest()
+    test()
+    implementation(Deps.External.coroutines)
+}
+
 fun DependencyHandler.dataCircuits() {
     hilt()
     compose()
@@ -175,6 +187,6 @@ fun DependencyHandler.dataCircuits() {
 
     implementation(Deps.External.coroutines)
 
-    implementationProject(Deps.Modules.Core.ui)
     implementationProject(Deps.Modules.Core.data)
+    implementationProject(Deps.Modules.Core.database)
 }

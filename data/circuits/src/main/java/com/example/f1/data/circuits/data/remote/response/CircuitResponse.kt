@@ -1,8 +1,8 @@
-package com.example.f1.data.circuits.model
+package com.example.f1.data.circuits.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class CircuitResponse(
+internal data class CircuitResponse(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
     @SerializedName("image") val image: String,
@@ -16,7 +16,7 @@ data class CircuitResponse(
     @SerializedName("owner") val owner: String?
 )
 
-data class LapRecordResponse(
+internal data class LapRecordResponse(
     @SerializedName("time") val time: String,
     @SerializedName("driver") val driver: String,
     @SerializedName("year") val year: String
