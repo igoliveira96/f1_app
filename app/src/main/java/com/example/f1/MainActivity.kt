@@ -24,9 +24,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.f1.core.ui.components.Driver
+import androidx.navigation.compose.rememberNavController
+import com.example.f1.core.navigation.AppNavigation
 import com.example.f1.core.ui.data.BottomNavigationItemUI
-import com.example.f1.core.ui.data.DriverUI
 import com.example.f1.core.ui.theme.F1Theme
 import com.example.f1.core.ui.theme.LightSilver
 import com.example.f1.core.ui.theme.values.LocalSpacing
@@ -36,10 +36,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
             val spacing = LocalSpacing.current
-            var selectedIndex by rememberSaveable {
-                mutableStateOf(0)
-            }
+            var selectedIndex by rememberSaveable { mutableStateOf(0) }
 
             F1Theme {
                 Scaffold(
@@ -53,6 +52,7 @@ class MainActivity : ComponentActivity() {
                                     selected = selectedIndex == index,
                                     onClick = {
                                         selectedIndex = index
+                                        navController.navigate(itemUI.destination)
                                     },
                                     label = {
                                         Text(
@@ -103,7 +103,7 @@ class MainActivity : ComponentActivity() {
                         Column(
                             modifier = Modifier.fillMaxWidth().padding(spacing.medium)
                         ) {
-                            Driver(driverUI = DriverUI.EXAMPLE)
+                            AppNavigation(navController = navController)
                         }
                     }
                 }

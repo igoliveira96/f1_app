@@ -7,6 +7,8 @@ object Versions {
     object Android {
         const val compose = "1.4.2"
         const val activityCompose = "1.5.1"
+        const val composeNavigation = "2.5.3"
+        const val lifecycleViewModel = ""
         const val material3 = "1.1.2"
         const val lifecycle = "2.3.1"
         const val hilt = "2.48.1"
@@ -46,6 +48,8 @@ object Deps {
         const val composeMaterial3 = "androidx.compose.material3:material3:${Versions.Android.material3}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.Android.activityCompose}"
         const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
+        const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.Android.composeNavigation}"
+        const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.lifecycleViewModel}"
         const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Android.lifecycle}"
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.Android.hilt}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Android.hilt}"
@@ -86,12 +90,13 @@ object Deps {
 
     object Modules {
         object Core {
-            val ui = ":core:ui"
-            val data = ":core:data"
+            const val ui = ":core:ui"
+            const val data = ":core:data"
+            const val navigation = ":core:navigation"
         }
 
         object Data {
-            val circuits = ":data:circuits"
+            const val circuits = ":data:circuits"
         }
     }
 
@@ -108,8 +113,10 @@ fun DependencyHandler.compose() {
     implementation(Deps.Android.composeToolingPreview)
     implementation(Deps.Android.composeMaterial3)
     implementation(Deps.Android.materialIconsExtended)
+    implementation(Deps.Android.composeNavigation)
     implementation(Deps.Android.activityCompose)
     implementation(Deps.External.coil)
+    implementation(Deps.Android.lifecycleViewModel)
 }
 
 fun DependencyHandler.hilt() {
@@ -151,6 +158,7 @@ fun DependencyHandler.coreUI() {
 
 fun DependencyHandler.features() {
     implementationProject(Deps.Modules.Core.ui)
+    implementationProject(Deps.Modules.Core.navigation)
     implementationProject(Deps.Modules.Data.circuits)
 }
 
@@ -160,6 +168,14 @@ fun DependencyHandler.coreData() {
     androidTest()
     test()
     implementation(Deps.External.coroutines)
+}
+
+fun DependencyHandler.coreNavigation() {
+    hilt()
+    compose()
+    retrofit()
+    androidTest()
+    test()
 }
 
 fun DependencyHandler.dataCircuits() {

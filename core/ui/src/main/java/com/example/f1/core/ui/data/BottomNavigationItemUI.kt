@@ -14,7 +14,8 @@ data class BottomNavigationItemUI(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
     val hasNews: Boolean,
-    val badgeCount: Int? = null
+    val badgeCount: Int? = null,
+    val destination: String
 ) {
 
     companion object {
@@ -23,19 +24,22 @@ data class BottomNavigationItemUI(
                 title = "Racing",
                 selectedIcon = Icons.Filled.SportsScore,
                 unselectedIcon = Icons.Outlined.SportsScore,
-                hasNews = false
+                hasNews = false,
+                destination = "home/racing"
             ),
             BottomNavigationItemUI(
                 title = "Circuits",
                 selectedIcon = Icons.Filled.Flag,
                 unselectedIcon = Icons.Outlined.Flag,
-                hasNews = false
+                hasNews = false,
+                destination = "home/circuits"
             ),
             BottomNavigationItemUI(
                 title = "Standings",
                 selectedIcon = Icons.Filled.EmojiEvents,
                 unselectedIcon = Icons.Outlined.EmojiEvents,
-                hasNews = false
+                hasNews = false,
+                destination = "home/standings"
             ),
         )
     }
