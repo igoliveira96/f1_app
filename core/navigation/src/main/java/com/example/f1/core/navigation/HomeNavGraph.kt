@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.example.f1.core.navigation.destination.HomeDestination
 import com.example.f1.core.navigation.destination.ParentDestination
+import com.example.f1.feature.circuits.CircuitsScreen
 
 fun NavGraphBuilder.addHomeNavGraph() {
     navigation(
@@ -29,9 +30,7 @@ private fun NavGraphBuilder.addRacing() {
 
 private fun NavGraphBuilder.addCircuits() {
     composable(HomeDestination.Circuits.createRoute()) {
-        Column {
-            Text(text = "circuits")
-        }
+        CircuitsScreen()
     }
 }
 

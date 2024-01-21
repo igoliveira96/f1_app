@@ -67,13 +67,7 @@ android {
 }
 
 dependencies {
-    androidX()
-    compose()
-    implementation(Deps.Android.hiltAndroid)
-    kapt(Deps.Android.hiltCompiler)
-    androidTest()
-    test()
-    features()
+    app()
 }
 
 kapt {

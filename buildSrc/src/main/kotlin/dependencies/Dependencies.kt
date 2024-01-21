@@ -105,6 +105,10 @@ object Deps {
         object Data {
             const val circuits = ":data:circuits"
         }
+
+        object Feature {
+            const val circuits = ":feature:circuits"
+        }
     }
 
 }
@@ -166,10 +170,19 @@ fun DependencyHandler.coreUI() {
     test()
 }
 
-fun DependencyHandler.features() {
+fun DependencyHandler.app() {
+    androidX()
+    compose()
+    implementation(Deps.Android.hiltAndroid)
+    kapt(Deps.Android.hiltCompiler)
+    androidTest()
+    test()
     implementationProject(Deps.Modules.Core.ui)
     implementationProject(Deps.Modules.Core.navigation)
-    implementationProject(Deps.Modules.Data.circuits)
+}
+
+fun DependencyHandler.features() {
+    implementationProject(Deps.Modules.Feature.circuits)
 }
 
 fun DependencyHandler.coreData() {
@@ -194,6 +207,7 @@ fun DependencyHandler.coreNavigation() {
     retrofit()
     androidTest()
     test()
+    features()
 }
 
 fun DependencyHandler.dataCircuits() {
@@ -207,4 +221,14 @@ fun DependencyHandler.dataCircuits() {
 
     implementationProject(Deps.Modules.Core.data)
     implementationProject(Deps.Modules.Core.database)
+}
+
+fun DependencyHandler.featureCircuits() {
+    hilt()
+    compose()
+    retrofit()
+    androidTest()
+    test()
+    implementationProject(Deps.Modules.Core.ui)
+    implementationProject(Deps.Modules.Data.circuits)
 }
