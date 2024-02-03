@@ -3,7 +3,7 @@ package com.example.f1.feature.circuits
 import com.example.f1.core.data.viewmodel.ViewEvent
 import com.example.f1.core.data.viewmodel.ViewSideEffect
 import com.example.f1.core.data.viewmodel.ViewState
-import com.example.f1.data.circuits.model.Circuit
+import com.example.f1.core.ui.data.CircuitUI
 
 class CircuitsContract {
 
@@ -11,7 +11,7 @@ class CircuitsContract {
 
     data class State(
         val isLoading: Boolean,
-        val circuits: List<Circuit>
+        val circuits: List<CircuitUI>
     ) : ViewState
 
     sealed class Effect : ViewSideEffect {

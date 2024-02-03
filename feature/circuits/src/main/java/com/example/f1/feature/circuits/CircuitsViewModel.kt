@@ -2,6 +2,7 @@ package com.example.f1.feature.circuits
 
 import com.example.f1.core.data.viewmodel.BaseViewModel
 import com.example.f1.data.circuits.usecase.GetCircuitsUseCase
+import com.example.f1.feature.circuits.mapper.CircuitUIMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -29,7 +30,12 @@ class CircuitsViewModel @Inject constructor(
             onResult = { result ->
                 if (result.isSuccess) {
                     result.getOrNull()?.let { circuits ->
-                        setState { copy(circuits = circuits, isLoading = false) }
+                        setState {
+                            copy(
+                                circuits = CircuitUIMapper.toDomain(circuits),
+                                isLoading = false
+                            )
+                        }
                     }
                 }
             }

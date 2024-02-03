@@ -54,30 +54,8 @@ fun CircuitsScreen(
                     )
                 }
 
-                items(state.circuits) { circuit ->
-                    Circuit(
-                        circuitUI = CircuitUI(
-                            id = circuit.id,
-                            name = circuit.name,
-                            imageURL = circuit.image,
-                            laps = circuit.laps,
-                            competition = CompetitionUI(
-                                id = circuit.competition.id,
-                                name = circuit.competition.name,
-                                location = LocationUI(
-                                    country = circuit.competition.location.country,
-                                    city = circuit.competition.location.city,
-                                )
-                            ),
-                            lapRecordUI = LapRecordUI(
-                                time = circuit.lapRecord.time,
-                                driver = circuit.lapRecord.driver,
-                                year = circuit.lapRecord.year,
-                            ),
-                            length = circuit.length,
-                            raceDistance = circuit.raceDistance
-                        )
-                    )
+                items(state.circuits) { circuitUI ->
+                    Circuit(circuitUI)
                 }
 
             }
