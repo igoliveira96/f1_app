@@ -1,0 +1,22 @@
+# Detekt configuration file
+
+# List of default rules to be applied
+# See https://detekt.dev/docs/rules/
+rules:
+  - "all"
+
+# Excludes
+exclude:
+  - "**/test/**"
+  - "**/build/**"
+
+# Custom rules
+# See https://detekt.dev/docs/creating-custom-rules/
+custom-rules:
+  - path: "path/to/custom/rule.kt"
+    name: "CustomRule"
+
+# Thresholds
+thresholds:
+  - "complexity:warn:40"
+  - "complexity:error:50"

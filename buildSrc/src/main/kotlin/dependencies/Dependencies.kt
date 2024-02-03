@@ -37,6 +37,7 @@ object Versions {
         const val mockwebserver = "4.11.0"
         const val javapoet = "1.13.0"
         const val coroutines = "1.3.9"
+        const val rxJava = "3.1.8"
         const val rxKotlin = "3.0.1"
         const val rxAndroid = "3.0.2"
     }
@@ -96,6 +97,7 @@ object Deps {
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.External.coroutines}"
         const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.External.rxKotlin}"
         const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.External.rxAndroid}"
+        const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.External.rxJava}"
     }
 
     object Modules {
@@ -151,6 +153,12 @@ fun DependencyHandler.retrofit() {
     debugImplementation(Deps.External.chucker)
     releaseImplementation(Deps.External.chuckerNoOp)
     testImplementation(Deps.External.mockwebserver)
+}
+
+fun DependencyHandler.rxJava() {
+    implementation(Deps.External.rxKotlin)
+    implementation(Deps.External.rxAndroid)
+    implementation(Deps.External.rxJava)
 }
 
 fun DependencyHandler.androidTest() {
@@ -222,8 +230,7 @@ fun DependencyHandler.dataCircuits() {
     test()
 
     implementation(Deps.External.coroutines)
-    implementation(Deps.External.rxKotlin)
-    implementation(Deps.External.rxAndroid)
+    rxJava()
 
     implementationProject(Deps.Modules.Core.data)
     implementationProject(Deps.Modules.Core.database)
@@ -234,6 +241,7 @@ fun DependencyHandler.featureCircuits() {
     compose()
     retrofit()
     androidTest()
+    rxJava()
     test()
     implementationProject(Deps.Modules.Core.ui)
     implementationProject(Deps.Modules.Data.circuits)

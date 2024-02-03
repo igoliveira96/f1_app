@@ -1,5 +1,6 @@
 plugins {
     id("com.google.dagger.hilt.android") version "2.48.1" apply false
+    id("io.gitlab.arturbosch.detekt") version "1.23.3"
 }
 
 buildscript {
