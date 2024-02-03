@@ -6,12 +6,16 @@ object Versions {
 
     object Android {
         const val compose = "1.4.2"
+        const val composeRuntime = "1.3.3"
         const val activityCompose = "1.5.1"
         const val composeNavigation = "2.5.3"
         const val lifecycleViewModel = ""
+        const val constraintLayout = "1.0.1"
         const val material3 = "1.1.2"
+        const val materialIcons = "1.5.4"
         const val lifecycle = "2.3.1"
         const val hilt = "2.48.1"
+        const val hiltCompose = "1.0.0"
     }
 
     object Google {
@@ -34,6 +38,9 @@ object Versions {
         const val mockwebserver = "4.11.0"
         const val javapoet = "1.13.0"
         const val coroutines = "1.3.9"
+        const val rxJava = "3.1.8"
+        const val rxKotlin = "3.0.1"
+        const val rxAndroid = "3.0.2"
     }
 
 }
@@ -45,15 +52,20 @@ object Deps {
         const val composeUI = "androidx.compose.ui:ui:${Versions.Android.compose}"
         const val composeUIGraphics = "androidx.compose.ui:ui-graphics:${Versions.Android.compose}"
         const val composeToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.Android.compose}"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:${Versions.Android.constraintLayout}"
         const val composeMaterial3 = "androidx.compose.material3:material3:${Versions.Android.material3}"
-        const val activityCompose = "androidx.activity:activity-compose:${Versions.Android.activityCompose}"
+        const val composeMaterialIcons = "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
+        const val activityCompose = "androidx.activity:activity-compose:${Versions.Android.materialIcons}"
+        const val composeRuntime = "androidx.compose.runtime:runtime:${Versions.Android.composeRuntime}"
         const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
         const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.Android.composeNavigation}"
         const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.lifecycleViewModel}"
         const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Android.lifecycle}"
+        const val lifecycleKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.lifecycle}"
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.Android.hilt}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Android.hilt}"
         const val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Android.hilt}"
+        const val hiltCompose = "androidx.hilt:hilt-navigation-compose:${Versions.Android.hiltCompose}"
     }
 
     object AGP {
@@ -86,17 +98,26 @@ object Deps {
         const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.External.retrofit}"
         const val javapoet = "com.squareup:javapoet:${Versions.External.javapoet}"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.External.coroutines}"
+        const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.External.rxKotlin}"
+        const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.External.rxAndroid}"
+        const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.External.rxJava}"
+        const val retrofitAdapter = "com.squareup.retrofit2:adapter-rxjava3:${Versions.External.retrofit}"
     }
 
     object Modules {
         object Core {
             const val ui = ":core:ui"
             const val data = ":core:data"
+            const val database = ":core:database"
             const val navigation = ":core:navigation"
         }
 
         object Data {
             const val circuits = ":data:circuits"
+        }
+
+        object Feature {
+            const val circuits = ":feature:circuits"
         }
     }
 
@@ -105,6 +126,7 @@ object Deps {
 fun DependencyHandler.androidX() {
     implementation(Deps.Android.coreKtx)
     implementation(Deps.Android.lifecycle)
+    implementation(Deps.Android.lifecycleKtx)
 }
 
 fun DependencyHandler.compose() {
@@ -112,11 +134,15 @@ fun DependencyHandler.compose() {
     implementation(Deps.Android.composeUIGraphics)
     implementation(Deps.Android.composeToolingPreview)
     implementation(Deps.Android.composeMaterial3)
+    implementation(Deps.Android.composeMaterialIcons)
     implementation(Deps.Android.materialIconsExtended)
     implementation(Deps.Android.composeNavigation)
     implementation(Deps.Android.activityCompose)
+    implementation(Deps.Android.constraintLayout)
+    implementation(Deps.Android.composeRuntime)
     implementation(Deps.External.coil)
     implementation(Deps.Android.lifecycleViewModel)
+    implementation(Deps.Android.hiltCompose)
 }
 
 fun DependencyHandler.hilt() {
@@ -126,6 +152,7 @@ fun DependencyHandler.hilt() {
 
 fun DependencyHandler.retrofit() {
     implementation(Deps.External.retrofit)
+    implementation(Deps.External.retrofitAdapter)
     implementation(Deps.External.okhttp3)
     implementation(Deps.External.loggingInterceptor)
     implementation(Deps.External.gson)
@@ -133,6 +160,12 @@ fun DependencyHandler.retrofit() {
     debugImplementation(Deps.External.chucker)
     releaseImplementation(Deps.External.chuckerNoOp)
     testImplementation(Deps.External.mockwebserver)
+}
+
+fun DependencyHandler.rxJava() {
+    implementation(Deps.External.rxKotlin)
+    implementation(Deps.External.rxAndroid)
+    implementation(Deps.External.rxJava)
 }
 
 fun DependencyHandler.androidTest() {
@@ -156,13 +189,32 @@ fun DependencyHandler.coreUI() {
     test()
 }
 
-fun DependencyHandler.features() {
+fun DependencyHandler.app() {
+    androidX()
+    compose()
+    implementation(Deps.Android.hiltAndroid)
+    kapt(Deps.Android.hiltCompiler)
+    androidTest()
+    test()
     implementationProject(Deps.Modules.Core.ui)
     implementationProject(Deps.Modules.Core.navigation)
-    implementationProject(Deps.Modules.Data.circuits)
+}
+
+fun DependencyHandler.features() {
+    implementationProject(Deps.Modules.Feature.circuits)
 }
 
 fun DependencyHandler.coreData() {
+    hilt()
+    retrofit()
+    androidTest()
+    androidX()
+    rxJava()
+    test()
+    implementation(Deps.External.coroutines)
+}
+
+fun DependencyHandler.coreDatabase() {
     hilt()
     retrofit()
     androidTest()
@@ -176,6 +228,8 @@ fun DependencyHandler.coreNavigation() {
     retrofit()
     androidTest()
     test()
+    features()
+    implementationProject(Deps.Modules.Core.data)
 }
 
 fun DependencyHandler.dataCircuits() {
@@ -186,7 +240,20 @@ fun DependencyHandler.dataCircuits() {
     test()
 
     implementation(Deps.External.coroutines)
+    rxJava()
 
+    implementationProject(Deps.Modules.Core.data)
+    implementationProject(Deps.Modules.Core.database)
+}
+
+fun DependencyHandler.featureCircuits() {
+    hilt()
+    compose()
+    retrofit()
+    androidTest()
+    rxJava()
+    test()
     implementationProject(Deps.Modules.Core.ui)
     implementationProject(Deps.Modules.Core.data)
+    implementationProject(Deps.Modules.Data.circuits)
 }

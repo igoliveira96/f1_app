@@ -30,7 +30,9 @@ import com.example.f1.core.ui.data.BottomNavigationItemUI
 import com.example.f1.core.ui.theme.F1Theme
 import com.example.f1.core.ui.theme.LightSilver
 import com.example.f1.core.ui.theme.values.LocalSpacing
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,7 +103,7 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                     ) {
                         Column(
-                            modifier = Modifier.fillMaxWidth().padding(spacing.medium)
+                            modifier = Modifier.fillMaxWidth().padding(horizontal = spacing.medium)
                         ) {
                             AppNavigation(navController = navController)
                         }
