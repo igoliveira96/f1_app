@@ -1,10 +1,10 @@
 package com.example.f1.data.circuits.repository
 
 import com.example.f1.data.circuits.model.Circuit
-import kotlinx.coroutines.flow.Flow
+import io.reactivex.rxjava3.core.Single
 
 interface CircuitsRepository {
 
-    suspend fun getCircuits(): Flow<Circuit>
+    fun getCircuits(): Single<List<Circuit>>
 
 }

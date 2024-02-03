@@ -15,6 +15,7 @@ object Versions {
         const val materialIcons = "1.5.4"
         const val lifecycle = "2.3.1"
         const val hilt = "2.48.1"
+        const val hiltCompose = "1.0.0"
     }
 
     object Google {
@@ -52,17 +53,19 @@ object Deps {
         const val composeUIGraphics = "androidx.compose.ui:ui-graphics:${Versions.Android.compose}"
         const val composeToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.Android.compose}"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:${Versions.Android.constraintLayout}"
-        val composeMaterial3 = "androidx.compose.material3:material3:${Versions.Android.material3}"
-        val composeMaterialIcons = "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
+        const val composeMaterial3 = "androidx.compose.material3:material3:${Versions.Android.material3}"
+        const val composeMaterialIcons = "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.Android.materialIcons}"
-        val composeRuntime = "androidx.compose.runtime:runtime:${Versions.Android.composeRuntime}"
+        const val composeRuntime = "androidx.compose.runtime:runtime:${Versions.Android.composeRuntime}"
         const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
         const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.Android.composeNavigation}"
         const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.lifecycleViewModel}"
         const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Android.lifecycle}"
+        const val lifecycleKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.lifecycle}"
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.Android.hilt}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Android.hilt}"
         const val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Android.hilt}"
+        const val hiltCompose = "androidx.hilt:hilt-navigation-compose:${Versions.Android.hiltCompose}"
     }
 
     object AGP {
@@ -98,6 +101,7 @@ object Deps {
         const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.External.rxKotlin}"
         const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.External.rxAndroid}"
         const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.External.rxJava}"
+        const val retrofitAdapter = "com.squareup.retrofit2:adapter-rxjava3:${Versions.External.retrofit}"
     }
 
     object Modules {
@@ -122,6 +126,7 @@ object Deps {
 fun DependencyHandler.androidX() {
     implementation(Deps.Android.coreKtx)
     implementation(Deps.Android.lifecycle)
+    implementation(Deps.Android.lifecycleKtx)
 }
 
 fun DependencyHandler.compose() {
@@ -137,6 +142,7 @@ fun DependencyHandler.compose() {
     implementation(Deps.Android.composeRuntime)
     implementation(Deps.External.coil)
     implementation(Deps.Android.lifecycleViewModel)
+    implementation(Deps.Android.hiltCompose)
 }
 
 fun DependencyHandler.hilt() {
@@ -146,6 +152,7 @@ fun DependencyHandler.hilt() {
 
 fun DependencyHandler.retrofit() {
     implementation(Deps.External.retrofit)
+    implementation(Deps.External.retrofitAdapter)
     implementation(Deps.External.okhttp3)
     implementation(Deps.External.loggingInterceptor)
     implementation(Deps.External.gson)
@@ -201,6 +208,8 @@ fun DependencyHandler.coreData() {
     hilt()
     retrofit()
     androidTest()
+    androidX()
+    rxJava()
     test()
     implementation(Deps.External.coroutines)
 }
@@ -220,6 +229,7 @@ fun DependencyHandler.coreNavigation() {
     androidTest()
     test()
     features()
+    implementationProject(Deps.Modules.Core.data)
 }
 
 fun DependencyHandler.dataCircuits() {
@@ -244,5 +254,6 @@ fun DependencyHandler.featureCircuits() {
     rxJava()
     test()
     implementationProject(Deps.Modules.Core.ui)
+    implementationProject(Deps.Modules.Core.data)
     implementationProject(Deps.Modules.Data.circuits)
 }

@@ -57,20 +57,21 @@ private fun CircuitInfo(circuitUI: CircuitUI) {
             text = stringResource(
                 R.string.circuit_name_and_location,
                 circuitUI.name,
-                circuitUI.competition.location.city,
-                circuitUI.competition.location.country
+                circuitUI.competition.location.country ?: "-"
             ),
             icon = R.drawable.ic_location
         )
-        TextWithIcon(
-            text = stringResource(
-                R.string.circuit_record,
-                circuitUI.lapRecordUI.time,
-                circuitUI.lapRecordUI.driver,
-                circuitUI.lapRecordUI.year,
-            ),
-            icon = R.drawable.ic_timer
-        )
+        if (!circuitUI.lapRecordUI.isEmpty) {
+            TextWithIcon(
+                text = stringResource(
+                    R.string.circuit_record,
+                    circuitUI.lapRecordUI.time ?: "",
+                    circuitUI.lapRecordUI.driver ?: "",
+                    circuitUI.lapRecordUI.year ?: "",
+                ),
+                icon = R.drawable.ic_timer
+            )
+        }
         Row(
             Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween

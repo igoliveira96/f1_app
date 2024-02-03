@@ -9,6 +9,7 @@ data class Circuit(
     val length: String,
     val raceDistance: String,
     val lapRecord: LapRecord,
+    val competition: Competition,
     val capacity: Int,
     val opened: Int,
     val owner: String?
@@ -30,7 +31,15 @@ data class Circuit(
             capacity = 0,
             opened = 1990,
             owner = null,
-            firstGrandPrix = 1990
+            firstGrandPrix = 1990,
+            competition = Competition(
+                id = 1,
+                name = "Australia Grand Prix",
+                location = Location(
+                    country = "Australia",
+                    city = "Melbourne"
+                )
+            ),
         )
 
         val BAHRAIN = Circuit(
@@ -48,16 +57,40 @@ data class Circuit(
             ),
             capacity = 70000,
             opened = 2004,
+            competition = Competition(
+                id = 1,
+                name = "Australia Grand Prix",
+                location = Location(
+                    country = "Australia",
+                    city = "Melbourne"
+                )
+            ),
             owner = null
         )
 
         val CIRCUITS_EXAMPLE = listOf(ALBERT_PARK_CIRCUIT, BAHRAIN)
     }
 
+    override fun toString(): String {
+        return "Circuit(id=$id, name='$name')"
+    }
+
+
 }
 
 data class LapRecord(
-    val time: String,
-    val driver: String,
-    val year: String
+    val time: String?,
+    val driver: String?,
+    val year: String?
+)
+
+data class Competition(
+    val id: Int,
+    val name: String,
+    val location: Location
+)
+
+data class Location(
+    val country: String?,
+    val city: String?
 )
