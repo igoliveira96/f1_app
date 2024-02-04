@@ -1,6 +1,7 @@
 plugins {
     `android-library`
     `kotlin-android`
+    `kotlin-kapt`
 }
 
 apply<MainGradlePlugin>()
@@ -11,4 +12,8 @@ android {
 
 dependencies {
     coreDatabase()
+}
+
+kapt {
+    correctErrorTypes = true
 }

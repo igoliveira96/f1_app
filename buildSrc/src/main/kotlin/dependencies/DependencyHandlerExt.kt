@@ -1,7 +1,6 @@
-import groovy.lang.Closure
+
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.project
 
 fun DependencyHandler.implementation(dependency: String) {
@@ -38,4 +37,8 @@ fun DependencyHandler.testImplementation(dependency: String) {
 
 fun DependencyHandler.kapt(dependency: String) {
     add("kapt", dependency)
+}
+
+fun DependencyHandler.annotationProcessor(dependency: String) {
+    add("annotationProcessor", dependency)
 }

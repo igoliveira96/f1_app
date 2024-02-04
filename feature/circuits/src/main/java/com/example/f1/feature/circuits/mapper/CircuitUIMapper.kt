@@ -1,15 +1,19 @@
 package com.example.f1.feature.circuits.mapper
 
 import com.example.f1.core.data.mapper.BaseMapper
+import com.example.f1.core.data.mapper.BaseMapperUI
 import com.example.f1.core.ui.data.CircuitUI
 import com.example.f1.core.ui.data.CompetitionUI
 import com.example.f1.core.ui.data.LapRecordUI
 import com.example.f1.core.ui.data.LocationUI
 import com.example.f1.data.circuits.model.Circuit
+import com.example.f1.data.circuits.model.Competition
+import com.example.f1.data.circuits.model.LapRecord
+import com.example.f1.data.circuits.model.Location
 
-object CircuitUIMapper : BaseMapper<Circuit, CircuitUI>() {
+object CircuitUIMapper : BaseMapperUI<Circuit, CircuitUI>() {
 
-    override fun toDomain(data: Circuit) = CircuitUI(
+    override fun toUI(data: Circuit) = CircuitUI(
         id = data.id,
         name = data.name,
         imageURL = data.image,
@@ -30,4 +34,5 @@ object CircuitUIMapper : BaseMapper<Circuit, CircuitUI>() {
         length = data.length,
         raceDistance = data.raceDistance
     )
+
 }

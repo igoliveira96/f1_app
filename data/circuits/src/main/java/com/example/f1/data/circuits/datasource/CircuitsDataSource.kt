@@ -5,6 +5,6 @@ import io.reactivex.rxjava3.core.Single
 
 interface CircuitsDataSource {
 
-    fun getCircuits(): Single<List<Circuit>>
+    fun getCircuits(forceUpdate: Boolean): Single<List<Circuit>>
 
 }

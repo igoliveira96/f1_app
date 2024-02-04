@@ -16,6 +16,7 @@ object Versions {
         const val lifecycle = "2.3.1"
         const val hilt = "2.48.1"
         const val hiltCompose = "1.0.0"
+        const val room = "2.5.0"
     }
 
     object Google {
@@ -66,6 +67,10 @@ object Deps {
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Android.hilt}"
         const val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Android.hilt}"
         const val hiltCompose = "androidx.hilt:hilt-navigation-compose:${Versions.Android.hiltCompose}"
+        const val room = "androidx.room:room-runtime:${Versions.Android.room}"
+        const val roomAnnotationProcessor = "androidx.room:room-compiler:${Versions.Android.room}"
+        const val roomRxJava = "androidx.room:room-rxjava3:${Versions.Android.room}"
+        const val roomCompiler = "androidx.room:room-compiler:${Versions.Android.room}"
     }
 
     object AGP {
@@ -127,6 +132,13 @@ fun DependencyHandler.androidX() {
     implementation(Deps.Android.coreKtx)
     implementation(Deps.Android.lifecycle)
     implementation(Deps.Android.lifecycleKtx)
+}
+
+fun DependencyHandler.room() {
+    implementation(Deps.Android.room)
+    implementation(Deps.Android.roomRxJava)
+    kapt(Deps.Android.roomCompiler)
+    annotationProcessor(Deps.Android.roomAnnotationProcessor)
 }
 
 fun DependencyHandler.compose() {
@@ -217,6 +229,8 @@ fun DependencyHandler.coreData() {
 fun DependencyHandler.coreDatabase() {
     hilt()
     retrofit()
+    room()
+    rxJava()
     androidTest()
     test()
     implementation(Deps.External.coroutines)
@@ -226,9 +240,10 @@ fun DependencyHandler.coreNavigation() {
     hilt()
     compose()
     retrofit()
-    androidTest()
-    test()
     features()
+    test()
+    androidTest()
+
     implementationProject(Deps.Modules.Core.data)
 }
 
@@ -240,8 +255,6 @@ fun DependencyHandler.dataCircuits() {
     test()
 
     implementation(Deps.External.coroutines)
-    rxJava()
-
     implementationProject(Deps.Modules.Core.data)
     implementationProject(Deps.Modules.Core.database)
 }
@@ -253,6 +266,7 @@ fun DependencyHandler.featureCircuits() {
     androidTest()
     rxJava()
     test()
+
     implementationProject(Deps.Modules.Core.ui)
     implementationProject(Deps.Modules.Core.data)
     implementationProject(Deps.Modules.Data.circuits)

@@ -10,7 +10,7 @@ class CircuitsRepositoryImpl @Inject constructor(
     private val circuitsDataSource: CircuitsDataSource
 ) : CircuitsRepository {
 
-    override fun getCircuits(): Single<List<Circuit>> =
-        circuitsDataSource.getCircuits()
+    override fun getCircuits(forceUpdate: Boolean): Single<List<Circuit>> =
+        circuitsDataSource.getCircuits(forceUpdate)
 
 }

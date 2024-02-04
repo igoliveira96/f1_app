@@ -26,13 +26,16 @@ class CircuitsViewModel @Inject constructor(
 
     private fun fetchCircuits() {
         getCircuitsUseCase(
+            params = GetCircuitsUseCase.Params(
+                forceUpdate = false
+            ),
             onDisposable = { disposable -> disposables.add(disposable) },
             onResult = { result ->
                 if (result.isSuccess) {
                     result.getOrNull()?.let { circuits ->
                         setState {
                             copy(
-                                circuits = CircuitUIMapper.toDomain(circuits),
+                                circuits = CircuitUIMapper.toUI(circuits),
                                 isLoading = false
                             )
                         }

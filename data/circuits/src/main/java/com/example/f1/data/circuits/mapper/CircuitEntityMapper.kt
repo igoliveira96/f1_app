@@ -1,18 +1,18 @@
 package com.example.f1.data.circuits.mapper
 
 import com.example.f1.core.data.mapper.BaseMapper
-import com.example.f1.data.circuits.data.remote.response.CircuitResponse
-import com.example.f1.data.circuits.data.remote.response.CompetitionResponse
-import com.example.f1.data.circuits.data.remote.response.LapRecordResponse
-import com.example.f1.data.circuits.data.remote.response.LocationResponse
+import com.example.f1.core.database.data.CircuitEntity
+import com.example.f1.core.database.data.CompetitionEntity
+import com.example.f1.core.database.data.LapRecordEntity
+import com.example.f1.core.database.data.LocationEntity
 import com.example.f1.data.circuits.model.Circuit
 import com.example.f1.data.circuits.model.Competition
 import com.example.f1.data.circuits.model.LapRecord
 import com.example.f1.data.circuits.model.Location
 
-object CircuitMapper : BaseMapper<CircuitResponse, Circuit>() {
+object CircuitEntityMapper : BaseMapper<CircuitEntity, Circuit>() {
 
-    override fun toDomain(data: CircuitResponse) = Circuit(
+    override fun toDomain(data: CircuitEntity): Circuit = Circuit(
         id = data.id,
         name = data.name,
         image = data.image,
@@ -38,7 +38,7 @@ object CircuitMapper : BaseMapper<CircuitResponse, Circuit>() {
         owner = data.owner
     )
 
-    override fun fromDomain(domain: Circuit): CircuitResponse = CircuitResponse(
+    override fun fromDomain(domain: Circuit): CircuitEntity = CircuitEntity(
         id = domain.id,
         name = domain.name,
         image = domain.image,
@@ -46,15 +46,15 @@ object CircuitMapper : BaseMapper<CircuitResponse, Circuit>() {
         laps = domain.laps,
         length = domain.length,
         raceDistance = domain.raceDistance,
-        lapRecord = LapRecordResponse(
+        lapRecord = LapRecordEntity(
             time = domain.lapRecord.time,
             driver = domain.lapRecord.driver,
             year = domain.lapRecord.year
         ),
-        competition = CompetitionResponse(
+        competition = CompetitionEntity(
             id = domain.competition.id,
             name = domain.competition.name,
-            location = LocationResponse(
+            location = LocationEntity(
                 country = domain.competition.location.country,
                 city = domain.competition.location.city
             )

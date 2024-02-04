@@ -11,8 +11,13 @@ class GetCircuitsUseCase @Inject constructor(
 ) : BaseUseCaseRxJava<List<Circuit>, GetCircuitsUseCase.Params>() {
 
     override fun execute(params: Params?): Single<List<Circuit>> =
-        repository.getCircuits()
+        when(params) {
+            null -> throw Exception("params not be null")
+            else -> repository.getCircuits(params.forceUpdate)
+        }
 
-    class Params
+    data class Params(
+        val forceUpdate: Boolean = false
+    )
 
 }
