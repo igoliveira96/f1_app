@@ -37,13 +37,11 @@ fun TextWithIcon(
         Icon(
             painterResource(icon),
             modifier = Modifier.size(spacing.medium),
-            contentDescription = "",
-            tint = iconTint
+            contentDescription = ""
         )
         Text(
             text = text,
             style = typography.labelSmall,
-            color = color
         )
     }
 }
