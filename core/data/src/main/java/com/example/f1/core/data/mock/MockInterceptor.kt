@@ -6,6 +6,7 @@ import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
+import javax.net.ssl.HttpsURLConnection
 
 class MockInterceptor : Interceptor {
 
@@ -15,7 +16,7 @@ class MockInterceptor : Interceptor {
         return chain.proceed(chain.request())
             .newBuilder()
             .protocol(Protocol.HTTP_2)
-            .code(200)
+            .code(HttpsURLConnection.HTTP_OK)
             .message(responseBody)
             .body(
                 responseBody.toByteArray().toResponseBody(

@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.example.f1.core.navigation
 
 import androidx.compose.runtime.Composable

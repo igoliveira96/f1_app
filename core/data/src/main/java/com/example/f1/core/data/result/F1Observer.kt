@@ -5,10 +5,12 @@ import io.reactivex.rxjava3.disposables.Disposable
 
 open class F1Observer<T: Any>(
     private val onResult: (F1Result<T>) -> Unit,
-    private val onSubscribe: (Disposable) -> Unit
+    private val onDisposable: (Disposable) -> Unit
 ) : SingleObserver<T> {
 
-    override fun onSubscribe(d: Disposable) { }
+    override fun onSubscribe(d: Disposable) {
+        onDisposable(d)
+    }
 
     override fun onSuccess(data: T) {
         onResult(F1Result.success(data))

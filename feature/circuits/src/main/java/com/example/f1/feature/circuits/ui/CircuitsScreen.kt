@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.example.f1.feature.circuits.ui
 
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +28,6 @@ import kotlinx.coroutines.flow.onEach
 fun CircuitsScreen(
     state: CircuitsContract.State,
     effectFlow: Flow<CircuitsContract.Effect>?,
-    onEventSent: (event: CircuitsContract.Event) -> Unit,
     onNavigationRequested: (CircuitsContract.Effect.Navigation) -> Unit
 ) {
     val spacing = LocalSpacing.current

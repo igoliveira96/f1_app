@@ -10,6 +10,10 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+apply {
+    from("../config/detekt/detekt.gradle")
+}
+
 android {
     namespace = "com.example.f1"
     compileSdk = Settings.compileSdk

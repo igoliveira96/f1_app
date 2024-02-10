@@ -20,9 +20,7 @@ class CircuitsViewModel @Inject constructor(
         circuits = emptyList()
     )
 
-    override fun handleEvents(event: CircuitsContract.Event) {
-
-    }
+    override fun handleEvents(event: CircuitsContract.Event) = Unit
 
     private fun fetchCircuits() {
         getCircuitsUseCase(

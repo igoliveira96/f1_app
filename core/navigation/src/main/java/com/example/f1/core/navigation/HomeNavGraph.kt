@@ -37,7 +37,7 @@ private fun NavGraphBuilder.addCircuits() {
         CircuitsScreen(
             state = viewModel.viewState.value,
             effectFlow = viewModel.effect,
-            onEventSent = { event ->  viewModel.setEvent(event) },
+//            onEventSent = { event ->  viewModel.setEvent(event) },
             onNavigationRequested = { navigationEffect ->
                 if (navigationEffect is CircuitsContract.Effect.Navigation.Back) {
 //                    navController.navigateToRepos(navigationEffect.userId)
