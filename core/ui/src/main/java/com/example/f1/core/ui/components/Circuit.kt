@@ -12,6 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,16 +27,16 @@ fun Circuit(circuitUI: CircuitUI) {
 
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.secondary
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
     ) {
-       Column(
-           modifier = Modifier
-               .fillMaxWidth()
-               .padding(spacing.medium),
-       ) {
-           CircuitInfo(circuitUI)
-       }
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(spacing.medium),
+        ) {
+            CircuitInfo(circuitUI)
+        }
     }
 }
 
@@ -49,7 +50,8 @@ private fun CircuitInfo(circuitUI: CircuitUI) {
         Text(
             circuitUI.competition.name,
             style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = Color.White
         )
         TextWithIcon(
             text = stringResource(
