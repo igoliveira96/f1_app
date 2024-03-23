@@ -1,4 +1,4 @@
-package com.example.f1.feature.circuits
+package com.example.f1.feature.circuits.viewmodel
 
 import com.example.f1.core.data.viewmodel.BaseViewModel
 import com.example.f1.data.circuits.usecase.GetCircuitsUseCase

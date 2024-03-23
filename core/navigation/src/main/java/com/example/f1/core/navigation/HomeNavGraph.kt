@@ -8,8 +8,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.example.f1.core.navigation.destination.HomeDestination
 import com.example.f1.core.navigation.destination.ParentDestination
-import com.example.f1.feature.circuits.CircuitsContract
-import com.example.f1.feature.circuits.CircuitsViewModel
+import com.example.f1.feature.circuits.viewmodel.CircuitsContract
+import com.example.f1.feature.circuits.viewmodel.CircuitsViewModel
 import com.example.f1.feature.circuits.ui.CircuitsScreen
 
 fun NavGraphBuilder.addHomeNavGraph() {

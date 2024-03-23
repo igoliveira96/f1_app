@@ -1,4 +1,4 @@
-package com.example.f1.feature.circuits
+package com.example.f1.feature.circuits.viewmodel
 
 import com.example.f1.core.data.viewmodel.ViewEvent
 import com.example.f1.core.data.viewmodel.ViewSideEffect

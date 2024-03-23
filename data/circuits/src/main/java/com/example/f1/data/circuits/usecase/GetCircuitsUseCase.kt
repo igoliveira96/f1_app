@@ -1,5 +1,6 @@
 package com.example.f1.data.circuits.usecase
 
+import com.example.f1.core.data.exceptions.ParamsNotBeNullException
 import com.example.f1.core.data.usecase.BaseUseCaseRxJava
 import com.example.f1.data.circuits.model.Circuit
 import com.example.f1.data.circuits.repository.CircuitsRepository
@@ -12,7 +13,7 @@ class GetCircuitsUseCase @Inject constructor(
 
     override fun execute(params: Params?): Single<List<Circuit>> =
         when(params) {
-            null -> throw Exception("params not be null")
+            null -> throw ParamsNotBeNullException()
             else -> repository.getCircuits(params.forceUpdate)
         }
 

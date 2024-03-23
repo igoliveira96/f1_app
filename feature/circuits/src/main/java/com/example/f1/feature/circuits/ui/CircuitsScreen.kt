@@ -13,12 +13,8 @@ import com.example.f1.core.data.viewmodel.SIDE_EFFECTS_KEY
 import com.example.f1.core.ui.components.Circuit
 import com.example.f1.core.ui.components.FullLoadingView
 import com.example.f1.core.ui.components.PageTitle
-import com.example.f1.core.ui.data.CircuitUI
-import com.example.f1.core.ui.data.CompetitionUI
-import com.example.f1.core.ui.data.LapRecordUI
-import com.example.f1.core.ui.data.LocationUI
 import com.example.f1.core.ui.theme.values.LocalSpacing
-import com.example.f1.feature.circuits.CircuitsContract
+import com.example.f1.feature.circuits.viewmodel.CircuitsContract
 import com.example.f1.feature.circuits.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
