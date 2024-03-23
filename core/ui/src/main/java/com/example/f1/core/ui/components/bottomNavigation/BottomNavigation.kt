@@ -21,12 +21,20 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
@@ -39,6 +47,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.f1.core.ui.R
 import com.example.f1.core.ui.data.BottomNavigationItemUI
 import com.example.f1.core.ui.data.BottomNavigationUI
@@ -47,6 +56,50 @@ import com.example.f1.core.ui.utils.times
 import com.example.f1.core.ui.utils.transform
 import kotlin.math.PI
 import kotlin.math.sin
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppBottomNavigation(navController: NavController) {
+    var selectedIndex by rememberSaveable { mutableStateOf(0) }
+
+    NavigationBar {
+        BottomNavigationItemUI.DEFAULT.forEachIndexed { index, itemUI ->
+            NavigationBarItem(
+                selected = selectedIndex == index,
+                onClick = {
+                    selectedIndex = index
+                    navController.navigate(itemUI.destination)
+                },
+                label = {
+                    Text(
+                        text = itemUI.title
+                    )
+                },
+                alwaysShowLabel = false,
+                icon = {
+                    BadgedBox(
+                        badge = {
+                            if (itemUI.badgeCount != null) {
+                                Badge {
+                                    Text(itemUI.badgeCount.toString())
+                                }
+                            } else if (itemUI.hasNews) {
+                                Badge()
+                            }
+                        }
+                    ) {
+                        Icon(
+                            imageVector = if (selectedIndex == index) {
+                                itemUI.selectedIcon
+                            } else itemUI.unselectedIcon,
+                            contentDescription = itemUI.title
+                        )
+                    }
+                }
+            )
+        }
+    }
+}
 
 @Composable
 fun AppBottomNavigation(
@@ -142,7 +195,7 @@ private fun BottomNavigationContent(
         BottomNavigationItemUI.DEFAULT.map { bottomNavigationItem ->
             IconButton(onClick = { onClick(bottomNavigationItem) }) {
                 Icon(
-                    imageVector = bottomNavigationItem.icon,
+                    imageVector = bottomNavigationItem.unselectedIcon,
                     contentDescription = null,
                     tint = Color.White
                 )

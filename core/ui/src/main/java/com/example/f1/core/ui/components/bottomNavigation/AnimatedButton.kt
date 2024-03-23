@@ -29,7 +29,7 @@ fun AppNavigationButton(
     onClick: (BottomNavigationItemUI) -> Unit = { }
 ) {
     AnimatedFab(
-        icon = navigationItemUI.icon,
+        icon = navigationItemUI.unselectedIcon,
         modifier = Modifier
             .padding(
                 paddingValues * FastOutSlowInEasing.transform(
