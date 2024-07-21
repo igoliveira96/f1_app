@@ -2,9 +2,11 @@ package com.example.f1.core.ui.components
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.togetherWith
 import androidx.compose.animation.with
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -157,9 +159,9 @@ private fun DriverImage(driverUI: DriverUI, points: String) {
                 targetState = points,
                 transitionSpec = {
                     slideIntoContainer(
-                        towards = AnimatedContentScope.SlideDirection.Up,
+                        towards = AnimatedContentTransitionScope.SlideDirection.Up,
                         animationSpec = tween(durationMillis = 500)
-                    ) with ExitTransition.None
+                    ) togetherWith ExitTransition.None
                 },
                 label = ""
             ) { targetPoints ->

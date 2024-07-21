@@ -28,7 +28,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
+    primary = Dark,
     secondary = PurpleGrey40,
     tertiary = Pink40,
     surfaceVariant = White40,
@@ -65,6 +65,7 @@ fun F1Theme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.primary.toArgb()
+            window.navigationBarColor = colorScheme.primary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
