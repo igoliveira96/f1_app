@@ -5,6 +5,13 @@ import settings.Settings
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+}
+
+apply {
+    from("../config/detekt/detekt.gradle")
 }
 
 android {
@@ -51,6 +58,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Settings.CompileOptions.kotlinCompilerExtensionVersion
@@ -63,8 +71,9 @@ android {
 }
 
 dependencies {
-    androidX()
-    compose()
-    androidTest()
-    features()
+    app()
+}
+
+kapt {
+    correctErrorTypes = true
 }
