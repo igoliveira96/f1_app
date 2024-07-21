@@ -4,10 +4,10 @@ import org.gradle.api.JavaVersion
 
 object Settings {
 
-    val compileSdk = 33
+    val compileSdk = 34
     val applicationId = "com.example.f1"
     val minSdk = 21
-    val targetSdk = 33
+    val targetSdk = 34
     val versionCode = 1
     val versionName = "1.0"
     val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -24,7 +24,7 @@ object Settings {
 
     object CompileOptions {
         const val kotlinJvmTarget = "18"
-        const val kotlinCompilerExtensionVersion = "1.4.2"
+        const val kotlinCompilerExtensionVersion = "1.5.14"
         val javaVersion = JavaVersion.VERSION_18
     }
 

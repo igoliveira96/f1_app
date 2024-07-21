@@ -54,7 +54,6 @@ fun CircuitsScreen(
                 items(state.circuits) { circuitUI ->
                     Circuit(circuitUI)
                 }
-
             }
         }
     }

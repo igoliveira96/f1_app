@@ -5,10 +5,9 @@ object Versions {
     const val coreKtx = "1.8.0"
 
     object Android {
-        const val compose = "1.4.2"
-        const val composeRuntime = "1.3.3"
-        const val activityCompose = "1.5.1"
-        const val composeNavigation = "2.5.3"
+        const val compose = "1.6.8"
+        const val composeRuntime = "1.6.8"
+        const val composeNavigation = "2.7.7"
         const val lifecycleViewModel = ""
         const val constraintLayout = "1.0.1"
         const val material3 = "1.1.2"
